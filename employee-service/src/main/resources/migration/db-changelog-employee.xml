@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1 create table Employee" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_empl_employee">
+            <column name="f_id" type="bigserial">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="f_full_name" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_iban_byn" type="varchar(28)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_iban_currency" type="varchar(28)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_recruitment_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_termination_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_hired" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_name_legal" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2 create table Employee details" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_empl_employee_details">
+            <column name="f_id" type="bigserial">
+                <constraints foreignKeyName="f_id" referencedTableName="t_empl_employee" referencedColumnNames="f_id"/>
+            </column>
+            <column name="f_create_date" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_last_update" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_note" type="text"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3 insert employee" author="com.gmail.sidorovalexej">
+        <insert tableName="t_empl_employee">
+            <column name="f_full_name" value="Бородулин Рыгор Иванович"/>
+            <column name="f_recruitment_date" value="now()"/>
+            <column name="f_termination_date" value="now()"/>
+            <column name="f_iban_byn" value="BY43UNBS32132131232120007933"/>
+            <column name="f_iban_currency" value="BY67UNBS32132131232120007933"/>
+            <column name="f_name_legal" value="Poets and writers"/>
+            <column name="f_hired" value="true"/>
+        </insert>
+        <insert tableName="t_empl_employee_details">
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="Famous belorussian poet"/>
+        </insert>
+        <insert tableName="t_empl_employee">
+            <column name="f_full_name" value="Бородудкин Рыгор Иванович"/>
+            <column name="f_recruitment_date" value="now()"/>
+            <column name="f_termination_date" value="now()"/>
+            <column name="f_iban_byn" value="BY43UNBS32132198732120007933"/>
+            <column name="f_iban_currency" value="BY67UNBS32987131232120007933"/>
+            <column name="f_name_legal" value="company1"/>
+            <column name="f_hired" value="true"/>
+        </insert>
+        <insert tableName="t_empl_employee_details">
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="Famous belorussian growling singer"/>
+        </insert>
+        <insert tableName="t_empl_employee">
+            <column name="f_full_name" value="Рободудкин Рыгор Иванович"/>
+            <column name="f_recruitment_date" value="now()"/>
+            <column name="f_termination_date" value="now()"/>
+            <column name="f_iban_byn" value="BY43UNBS32132198732120456933"/>
+            <column name="f_iban_currency" value="BY67UNBS32987131232145607933"/>
+            <column name="f_name_legal" value="company2"/>
+            <column name="f_hired" value="true"/>
+        </insert>
+        <insert tableName="t_empl_employee_details">
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="Famous belorussian pet groomer"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
