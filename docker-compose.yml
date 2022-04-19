@@ -1,0 +1,77 @@
+version: "3.9"
+services:
+  postgres_auth:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "pass"
+    volumes:
+      - ./data_auth:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  postgres_company:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "pass"
+    volumes:
+      - ./data_comp:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+    command: -p 5433
+  postgres_empl:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "pass"
+    volumes:
+      - ./data_empl:/var/lib/postgresql/data
+    ports:
+      - "5434:5434"
+    command: -p 5434
+  postgres_conv:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "pass"
+    volumes:
+      - ./data_conv:/var/lib/postgresql/data
+    ports:
+      - "5435:5435"
+    command: -p 5435
+  auth-service:
+    container_name: auth-service
+    build:
+      context: authorization-service
+      dockerfile: Dockerfile
+    image: auth-service:latest
+    ports:
+      - 8080:8080
+  comp-service:
+    container_name: comp-service
+    build:
+      context: company-service
+      dockerfile: Dockerfile
+    image: comp-service:latest
+    ports:
+      - 8081:8081
+  empl-service:
+    container_name: empl-service
+    build:
+      context: employee-service
+      dockerfile: Dockerfile
+    image: empl-service:latest
+    ports:
+      - 8082:8082
+  conv-service:
+    container_name: conv-service
+    build:
+      context: converter-service
+      dockerfile: Dockerfile
+    image: conv-service:latest
+    ports:
+      - 8083:8083

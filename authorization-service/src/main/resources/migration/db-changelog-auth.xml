@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1 create table Role" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_auth_user_role">
+            <column name="f_id" type="bigserial">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="f_name" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2 create table User" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_auth_user">
+            <column name="f_id" type="bigserial">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="f_username" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_password" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_usermail" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_user_role_id" type="bigserial">
+                <constraints foreignKeyName="f_id" referencedTableName="t_auth_user_role" referencedColumnNames="f_id"/>
+            </column>
+            <column name="f_last_login_date" type="timestamp"/>
+            <column name="f_logout_date" type="timestamp"/>
+            <column name="f_active" type="boolean" defaultValueBoolean="true"/>
+            <column name="f_fail_attempts" type="integer" defaultValue="0"/>
+        </createTable>
+        <addDefaultValue catalogName="t_auth_user"
+                         columnName="f_active"
+                         defaultValueBoolean="true"
+                         tableName="t_auth_user"/>
+    </changeSet>
+    <changeSet id="3 create table User Details" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_auth_user_details">
+            <column name="f_user_id" type="bigserial">
+                <constraints foreignKeyName="f_id" referencedTableName="t_auth_user" referencedColumnNames="f_id"/>
+            </column>
+            <column name="f_first_name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_registration_date" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4 create table User Session" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_auth_user_session">
+            <column name="f_id" type="bigserial">
+                <constraints foreignKeyName="f_id" referencedTableName="t_auth_user" referencedColumnNames="f_id"/>
+            </column>
+            <column name="f_session_id" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="f_session_start" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_active" type="boolean" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5 insert roles" author="a.rafeyenka@gmail.com">
+        <insert tableName="t_auth_user_role">
+            <column name="f_name" value="ROLE_ADMIN"/>
+        </insert>
+        <insert tableName="t_auth_user_role">
+            <column name="f_name" value="ROLE_EMPLOYEE"/>
+        </insert>
+    </changeSet>
+    <changeSet id="6 insert user with admin status" author="com.gmail.sidorovalexej">
+        <insert tableName="t_auth_user">
+            <column name="f_username" value="admina"/>
+            <column name="f_usermail" value="admin@bsb.by"/>
+            <column name="f_password" value="$2a$12$oTk.R0pPtOqxZoFTGA/CmebUoAjvWum7rdl.lb8AhS/HDWG.yf2ym"/>
+            <column name="f_user_role_id" value="1"/>
+        </insert>
+        <insert tableName="t_auth_user_details">
+            <column name="f_first_name" value="Админ"/>
+        </insert>
+    </changeSet>
+    <changeSet id="7 insert user with employee status" author="com.gmail.sidorovalexej">
+        <insert tableName="t_auth_user">
+            <column name="f_username" value="employee"/>
+            <column name="f_usermail" value="employee@bsb.by"/>
+            <column name="f_password" value="$2a$12$oTk.R0pPtOqxZoFTGA/CmebUoAjvWum7rdl.lb8AhS/HDWG.yf2ym"/>
+            <column name="f_user_role_id" value="2"/>
+        </insert>
+        <insert tableName="t_auth_user_details">
+            <column name="f_first_name" value="Сотрудник"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

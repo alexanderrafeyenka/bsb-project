@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1 create table Application" author="com.gmail.rafeyenka.a">
+        <createTable tableName="t_conv_application">
+            <column name="f_id" type="bigserial">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="f_uuid" type="uuid">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_status" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_employee_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_name_legal" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_convert_from" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_convert_to" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_percent_conv" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2 create table Application details" author="com.gmail.rafeyenka.a">
+        <createTable tableName="t_conv_application_details">
+            <column name="f_application_id" type="bigint">
+                <constraints foreignKeyName="f_application_id" referencedTableName="t_conv_application"
+                             referencedColumnNames="f_id"/>
+            </column>
+            <column name="f_create_date" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_last_update" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_note" type="text">
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3 create table ApplicationUpdate" author="com.gmail.rafeyenka.a">
+        <createTable tableName="t_conv_application_update">
+            <column name="f_id" type="bigserial">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="f_username" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_changed_field" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_value_changed_to" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_update_date" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_application_id" type="bigint">
+                <constraints foreignKeyName="f_application_id" referencedTableName="t_conv_application"
+                             referencedColumnNames="f_id"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4 insert applications" author="com.gmail.rafeyenka.a">
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000000"/>
+            <column name="f_status" value="New"/>
+            <column name="f_employee_id" value="1"/>
+            <column name="f_name_legal" value="company1"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="USD"/>
+            <column name="f_percent_conv" value="70"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="1"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000001"/>
+            <column name="f_status" value="InProgress"/>
+            <column name="f_employee_id" value="2"/>
+            <column name="f_name_legal" value="company2"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="EUR"/>
+            <column name="f_percent_conv" value="50"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="2"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000002"/>
+            <column name="f_status" value="InProgress"/>
+            <column name="f_employee_id" value="1"/>
+            <column name="f_name_legal" value="company43"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="RUB"/>
+            <column name="f_percent_conv" value="100"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="3"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000003"/>
+            <column name="f_status" value="Done"/>
+            <column name="f_employee_id" value="2"/>
+            <column name="f_name_legal" value="company2"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="EUR"/>
+            <column name="f_percent_conv" value="10"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="4"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000004"/>
+            <column name="f_status" value="Rejected"/>
+            <column name="f_employee_id" value="2"/>
+            <column name="f_name_legal" value="company1"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="USD"/>
+            <column name="f_percent_conv" value="50"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="5"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000005"/>
+            <column name="f_status" value="Done"/>
+            <column name="f_employee_id" value="3"/>
+            <column name="f_name_legal" value="company94"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="RUB"/>
+            <column name="f_percent_conv" value="100"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="6"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000006"/>
+            <column name="f_status" value="Rejected"/>
+            <column name="f_employee_id" value="3"/>
+            <column name="f_name_legal" value="company9"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="USD"/>
+            <column name="f_percent_conv" value="25"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="7"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000007"/>
+            <column name="f_status" value="New"/>
+            <column name="f_employee_id" value="2"/>
+            <column name="f_name_legal" value="company12"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="EUR"/>
+            <column name="f_percent_conv" value="7"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="8"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000008"/>
+            <column name="f_status" value="New"/>
+            <column name="f_employee_id" value="3"/>
+            <column name="f_name_legal" value="company8"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="EUR"/>
+            <column name="f_percent_conv" value="65"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="9"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000009"/>
+            <column name="f_status" value="Rejected"/>
+            <column name="f_employee_id" value="1"/>
+            <column name="f_name_legal" value="company3"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="RUB"/>
+            <column name="f_percent_conv" value="90"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="10"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+        <insert tableName="t_conv_application">
+            <column name="f_uuid" value="00000000-0000-0000-0000-000000000010"/>
+            <column name="f_status" value="InProgress"/>
+            <column name="f_employee_id" value="2"/>
+            <column name="f_name_legal" value="company3"/>
+            <column name="f_convert_from" value="BYN"/>
+            <column name="f_convert_to" value="RUB"/>
+            <column name="f_percent_conv" value="90"/>
+        </insert>
+        <insert tableName="t_conv_application_details">
+            <column name="f_application_id" value="11"/>
+            <column name="f_create_date" value="now()"/>
+            <column name="f_last_update" value="now()"/>
+            <column name="f_note" value="text"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

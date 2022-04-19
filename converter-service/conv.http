@@ -1,0 +1,12 @@
+### Update status application (200)
+
+PUT http://localhost:8083/api/applications?applicationConvId=00000000-0000-0000-0000-000000000001&status=Done
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VybmFoIiwiaWF0IjoxNjQ4MzA3MjA1LCJleHAiOjE2NDg1NjY0MDV9.c73UhV0Hb7DTXSGd8A4fuhlochQNmo9D5ZmcHecnHFKmz84kOaMT3r-CSaraBaOmMwdvwOoCPzgXZNVoWoI04w
+
+### Update status application (400)
+
+PUT http://localhost:8083/api/applications?applicationConvId=00000000-0000-0000-0000-000000000001&status=InProgres
+
+### Update nameLegal application (200)
+
+PUT http://localhost:8083/api/applications/00000000-0000-0000-0000-000000000000?Name_Legal=company5

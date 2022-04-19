@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1 create table Company" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_comp_company">
+            <column name="f_id" type="bigserial">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="f_name_legal" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_iban_byn" type="varchar(28)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_unp" type="varchar(9)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="f_resident" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_total_employees" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2 create table Company details" author="com.gmail.sidorovalexej">
+        <createTable tableName="t_comp_company_details">
+            <column name="f_id" type="bigint">
+                <constraints foreignKeyName="f_id" referencedTableName="t_comp_company" referencedColumnNames="f_id"/>
+            </column>
+            <column name="f_create_date" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_last_update" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="f_note" type="text"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company1"/>
+            <column name="f_iban_byn" value="BY10UNBS31350000001000009894"/>
+            <column name="f_unp" value="123456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="4 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company2"/>
+            <column name="f_iban_byn" value="BY20UNBS31350000001000009895"/>
+            <column name="f_unp" value="223456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="5 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company3"/>
+            <column name="f_iban_byn" value="BY30UNBS31350000001000009896"/>
+            <column name="f_unp" value="323456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="6 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company4"/>
+            <column name="f_iban_byn" value="BY40UNBS31350000001000009896"/>
+            <column name="f_unp" value="423456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="7 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company5"/>
+            <column name="f_iban_byn" value="BY50UNBS31350000001000009896"/>
+            <column name="f_unp" value="523456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="8 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company6"/>
+            <column name="f_iban_byn" value="BY60UNBS31350000001000009896"/>
+            <column name="f_unp" value="623456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="9 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company7"/>
+            <column name="f_iban_byn" value="BY70UNBS31350000001000009896"/>
+            <column name="f_unp" value="723456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="10 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company8"/>
+            <column name="f_iban_byn" value="BY80UNBS31350000001000009896"/>
+            <column name="f_unp" value="823456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="11 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="company9"/>
+            <column name="f_iban_byn" value="BY90UNBS31350000001000009896"/>
+            <column name="f_unp" value="923456789"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="12 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="Bsbany8"/>
+            <column name="f_iban_byn" value="BY80UNBS31350000012000009896"/>
+            <column name="f_unp" value="123458549"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+    <changeSet id="13 insert company" author="com.gmail.sidorovalexej">
+        <insert tableName="t_comp_company">
+            <column name="f_name_legal" value="Bsbany9"/>
+            <column name="f_iban_byn" value="BY90UNBS35650000001000009896"/>
+            <column name="f_unp" value="123846349"/>
+            <column name="f_resident" value="true"/>
+            <column name="f_total_employees" value="100"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
